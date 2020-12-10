@@ -1,4 +1,4 @@
-package json
+package jsonx
 
 import (
 	"github.com/stretchr/testify/assert"
