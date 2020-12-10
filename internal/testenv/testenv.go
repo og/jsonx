@@ -13,7 +13,7 @@ package testenv
 import (
 	"errors"
 	"flag"
-	"github.com/og/jsonx/internal/cfg"
+	"github.com/og/xjson/internal/cfg"
 	"os"
 	"os/exec"
 	"path/filepath"

@@ -1,7 +1,7 @@
-# jsonx
+# xjson
 
 ```go
-import "github.com/og/jsonx"
+import "github.com/og/xjson"
 ```
 Go JSON standard package extension library.
 
@@ -20,7 +20,7 @@ response := struct {
     Books []string `json:"books"`
     Map map[string]string `json:"map"`
 }{}
-data, err := jsonx.Marshal(response) ; if err != nil {panic(err)}
+data, err := xjson.Marshal(response) ; if err != nil {panic(err)}
 log.Print(string(data)) // {"books":null, map:{}}
 ```
 
@@ -33,7 +33,7 @@ request := struct {
     Page int `json:"page"`
     Price float64 `json:"price"`
 }{}
-err := jsonx.Unmarshal([]byte(`{"page":"1", "price": "1.05"}`), &request) ; if err != nil {panic(err)}
+err := xjson.Unmarshal([]byte(`{"page":"1", "price": "1.05"}`), &request) ; if err != nil {panic(err)}
 log.Printf("%+v", request) // {Page:1 Price:1.05}
 ```
 

@@ -4,7 +4,7 @@
 
 // +build gofuzz
 
-package jsonx
+package xjson
 
 import (
 	"fmt"

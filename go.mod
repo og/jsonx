@@ -1,4 +1,4 @@
-module github.com/og/jsonx
+module github.com/og/xjson
 
 go 1.15
 

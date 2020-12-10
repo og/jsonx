@@ -8,13 +8,13 @@
 // We benchmark converting between the JSON form
 // and in-memory data structures.
 
-package jsonx
+package xjson
 
 import (
 	"bytes"
 	"compress/gzip"
 	"fmt"
-	"github.com/og/jsonx/internal/testenv"
+	"github.com/og/xjson/internal/testenv"
 	"io/ioutil"
 	"os"
 	"reflect"
