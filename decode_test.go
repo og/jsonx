@@ -1898,7 +1898,6 @@ func TestUnmarshalNulls(t *testing.T) {
 	if nulls.PStruct != nil {
 		t.Errorf("Unmarshal of null did not clear nulls.PStruct")
 	}
-
 	if string(nulls.Raw) != "null" {
 		t.Errorf("Unmarshal of RawMessage null did not record null: %v", string(nulls.Raw))
 	}

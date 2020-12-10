@@ -776,7 +776,7 @@ type mapEncoder struct {
 
 func (me mapEncoder) encode(e *encodeState, v reflect.Value, opts encOpts) {
 	if v.IsNil() {
-		e.WriteString("null")
+		e.WriteString(emptyObjectString())
 		return
 	}
 	e.WriteByte('{')
@@ -819,7 +819,7 @@ func newMapEncoder(t reflect.Type) encoderFunc {
 
 func encodeByteSlice(e *encodeState, v reflect.Value, _ encOpts) {
 	if v.IsNil() {
-		e.WriteString("null")
+		e.WriteString(emptyArrayString())
 		return
 	}
 	s := v.Bytes()
@@ -854,7 +854,7 @@ type sliceEncoder struct {
 
 func (se sliceEncoder) encode(e *encodeState, v reflect.Value, opts encOpts) {
 	if v.IsNil() {
-		e.WriteString("null")
+		e.WriteString(emptyArrayString())
 		return
 	}
 	se.arrayEnc(e, v, opts)

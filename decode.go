@@ -935,7 +935,34 @@ func (d *decodeState) literalStore(item []byte, v reflect.Value, fromQuoted bool
 		}
 		switch v.Kind() {
 		default:
-			d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})
+			if autoNumberConvertString {
+				switch v.Kind() {
+				case reflect.Int, reflect.Int8, reflect.Int16,reflect.Int32, reflect.Int64:
+					value , err := strconv.Atoi(string(s))
+					if err != nil {
+						d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})
+					} else {
+						v.SetInt(int64(value))
+					}
+				case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+					value , err := strconv.Atoi(string(s))
+					if err != nil {
+						d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})
+					} else {
+						v.SetUint(uint64(value))
+					}
+				case reflect.Float32, reflect.Float64:
+					value , err := strconv.ParseFloat(string(s), 64)
+					if err != nil {d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})}
+					if err != nil {
+						d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})
+					} else {
+						v.SetFloat(value)
+					}
+				}
+			} else {
+				d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})
+			}
 		case reflect.Slice:
 			if v.Type().Elem().Kind() != reflect.Uint8 {
 				d.saveError(&UnmarshalTypeError{Value: "string", Type: v.Type(), Offset: int64(d.readIndex())})
